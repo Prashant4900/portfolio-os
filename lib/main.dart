@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/platforms/macos/home_screen.dart';
+import 'package:portfolio/utils/apps_provider.dart';
 import 'package:portfolio/utils/battery_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<BatteryProvider>(
           create: (_) => BatteryProvider(),
+        ),
+        ChangeNotifierProvider<AppsProvider>(
+          create: (_) => AppsProvider(),
         ),
       ],
       child: MaterialApp(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/common.dart';
 import 'package:portfolio/gen/assets.gen.dart';
+import 'package:portfolio/platforms/macos/apps/spotify.dart';
+import 'package:portfolio/platforms/macos/apps/vs_code.dart';
+import 'package:portfolio/utils/apps_provider.dart';
+import 'package:provider/provider.dart';
 
 class MacDockWidget extends StatelessWidget {
   const MacDockWidget({super.key});
@@ -26,15 +30,23 @@ class MacDockWidget extends StatelessWidget {
           horizontalMargin12,
           Assets.macos.images.mail.image(width: 40),
           horizontalMargin12,
-          Assets.svg.spotify.svg(width: 45),
+          InkWell(
+            onTap: () {
+              context.read<AppsProvider>().open(const MySpotifyApp());
+            },
+            child: Assets.svg.spotify.svg(width: 45),
+          ),
           horizontalMargin12,
           const CalenderIconWidget(),
           horizontalMargin12,
           Assets.macos.images.notes.image(width: 40),
           horizontalMargin12,
-          Assets.svg.vsCode.svg(width: 40),
-          horizontalMargin12,
-          Assets.macos.images.appStore.image(width: 40),
+          InkWell(
+            onTap: () {
+              context.read<AppsProvider>().open(const MyVSCodeApp());
+            },
+            child: Assets.svg.vsCode.svg(width: 40),
+          ),
           horizontalMargin12,
           Assets.macos.images.systemPref.image(width: 40),
           horizontalMargin12,

@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/urls.dart';
 import 'package:portfolio/platforms/macos/app_body.dart';
 
-class MySpotifyApp extends StatefulWidget {
-  const MySpotifyApp({this.backgroundColor, super.key, this.initPos});
+class MyVSCodeApp extends StatefulWidget {
+  const MyVSCodeApp({this.backgroundColor, super.key, this.initPos});
   final Offset? initPos;
   final Color? backgroundColor;
 
   @override
-  State<MySpotifyApp> createState() => _MySpotifyAppState();
+  State<MyVSCodeApp> createState() => _MyVSCodeAppState();
 }
 
-class _MySpotifyAppState extends State<MySpotifyApp> {
+class _MyVSCodeAppState extends State<MyVSCodeApp> {
   Offset? position = Offset.zero;
 
   final html.IFrameElement _iframeElementURL = html.IFrameElement();
@@ -24,14 +24,14 @@ class _MySpotifyAppState extends State<MySpotifyApp> {
   void initState() {
     position = widget.initPos;
     super.initState();
-    _iframeElementURL.src = AppURLs.spotify;
+    _iframeElementURL.src = AppURLs.vsCode;
     _iframeElementURL.style.border = 'none';
     _iframeElementURL
       ..allow = 'autoplay; encrypted-media;'
       ..allowFullscreen = true;
 
     ui.platformViewRegistry.registerViewFactory(
-      'spotifyIframe',
+      'VSCode',
       (int viewId) => _iframeElementURL,
     );
   }
@@ -39,11 +39,11 @@ class _MySpotifyAppState extends State<MySpotifyApp> {
   @override
   Widget build(BuildContext context) {
     return MacAppBody(
-      title: 'Spotify',
+      title: 'VSCode',
       child: ColoredBox(
         color: widget.backgroundColor ?? const Color(0xFF535353),
         child: const HtmlElementView(
-          viewType: 'spotifyIframe',
+          viewType: 'VSCode',
         ),
       ),
     );

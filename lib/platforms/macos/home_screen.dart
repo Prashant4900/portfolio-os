@@ -1,9 +1,10 @@
 import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/constants/common.dart';
 import 'package:portfolio/gen/assets.gen.dart';
 import 'package:portfolio/platforms/macos/dock.dart';
 import 'package:portfolio/platforms/macos/status_bar.dart';
+import 'package:portfolio/utils/apps_provider.dart';
+import 'package:provider/provider.dart';
 
 Future<String> getBatteryPercentage() async {
   final battery = Battery();
@@ -26,11 +27,19 @@ class MyMacosHomeScreen extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        child: const Column(
+        child: Column(
           children: [
-            MacStatusBarWidget(),
-            Expanded(child: emptyWidget),
-            MacDockWidget(),
+            const MacStatusBarWidget(),
+            Expanded(
+              child: Consumer<AppsProvider>(
+                builder: (context, ref, child) {
+                  return Stack(
+                    children: ref.openApps,
+                  );
+                },
+              ),
+            ),
+            const MacDockWidget(),
           ],
         ),
       ),

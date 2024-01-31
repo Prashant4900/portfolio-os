@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 enum Apps {
   spotify('Spotify'),
+  safari('Safari'),
   vsCode('VS Code');
 
   const Apps(this.name);

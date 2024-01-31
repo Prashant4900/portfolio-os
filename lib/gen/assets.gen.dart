@@ -10,22 +10,70 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
+
+class $AssetsAudioGen {
+  const $AssetsAudioGen();
+
+  /// File path: assets/audio/snake_music.mp3
+  String get snakeMusic => 'assets/audio/snake_music.mp3';
+
+  /// List of all assets
+  List<String> get values => [snakeMusic];
+}
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/dino.png
+  AssetGenImage get dino => const AssetGenImage('assets/images/dino.png');
+
+  /// File path: assets/images/flappy-bird-background.jpeg
+  AssetGenImage get flappyBirdBackground =>
+      const AssetGenImage('assets/images/flappy-bird-background.jpeg');
+
+  /// File path: assets/images/flappy-bird-ground.png
+  AssetGenImage get flappyBirdGround =>
+      const AssetGenImage('assets/images/flappy-bird-ground.png');
+
+  /// File path: assets/images/flappy-bird.png
+  AssetGenImage get flappyBird =>
+      const AssetGenImage('assets/images/flappy-bird.png');
+
+  /// File path: assets/images/full-screen.png
+  AssetGenImage get fullScreen =>
+      const AssetGenImage('assets/images/full-screen.png');
+
+  /// File path: assets/images/grass-background.jpeg
+  AssetGenImage get grassBackground =>
+      const AssetGenImage('assets/images/grass-background.jpeg');
 
   /// File path: assets/images/macos-background.jpeg
   AssetGenImage get macosBackground =>
       const AssetGenImage('assets/images/macos-background.jpeg');
 
+  /// File path: assets/images/snake.png
+  AssetGenImage get snake => const AssetGenImage('assets/images/snake.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [macosBackground];
+  List<AssetGenImage> get values => [
+        dino,
+        flappyBirdBackground,
+        flappyBirdGround,
+        flappyBird,
+        fullScreen,
+        grassBackground,
+        macosBackground,
+        snake
+      ];
 }
 
 class $AssetsMacosGen {
   const $AssetsMacosGen();
 
   $AssetsMacosImagesGen get images => const $AssetsMacosImagesGen();
+  $AssetsMacosLottieGen get lottie => const $AssetsMacosLottieGen();
+  $AssetsMacosSvgGen get svg => const $AssetsMacosSvgGen();
 }
 
 class $AssetsSvgGen {
@@ -102,18 +150,45 @@ class $AssetsMacosImagesGen {
   AssetGenImage get notes =>
       const AssetGenImage('assets/macos/images/notes.png');
 
+  /// File path: assets/macos/images/snake.png
+  AssetGenImage get snake =>
+      const AssetGenImage('assets/macos/images/snake.png');
+
   /// File path: assets/macos/images/system-pref.png
   AssetGenImage get systemPref =>
       const AssetGenImage('assets/macos/images/system-pref.png');
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [appStore, mail, message, notes, systemPref];
+      [appStore, mail, message, notes, snake, systemPref];
+}
+
+class $AssetsMacosLottieGen {
+  const $AssetsMacosLottieGen();
+
+  /// File path: assets/macos/lottie/siri.json
+  LottieGenImage get siri =>
+      const LottieGenImage('assets/macos/lottie/siri.json');
+
+  /// List of all assets
+  List<LottieGenImage> get values => [siri];
+}
+
+class $AssetsMacosSvgGen {
+  const $AssetsMacosSvgGen();
+
+  /// File path: assets/macos/svg/battery-mid.svg
+  SvgGenImage get batteryMid =>
+      const SvgGenImage('assets/macos/svg/battery-mid.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [batteryMid];
 }
 
 class Assets {
   Assets._();
 
+  static const $AssetsAudioGen audio = $AssetsAudioGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsMacosGen macos = $AssetsMacosGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
@@ -238,6 +313,65 @@ class SvgGenImage {
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(this._assetName);
+
+  final String _assetName;
+
+  LottieBuilder lottie({
+    Animation<double>? controller,
+    bool? animate,
+    FrameRate? frameRate,
+    bool? repeat,
+    bool? reverse,
+    LottieDelegates? delegates,
+    LottieOptions? options,
+    void Function(LottieComposition)? onLoaded,
+    LottieImageProviderFactory? imageProviderFactory,
+    Key? key,
+    AssetBundle? bundle,
+    Widget Function(BuildContext, Widget, LottieComposition?)? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    double? width,
+    double? height,
+    BoxFit? fit,
+    AlignmentGeometry? alignment,
+    String? package,
+    bool? addRepaintBoundary,
+    FilterQuality? filterQuality,
+    void Function(String)? onWarning,
+  }) {
+    return Lottie.asset(
+      _assetName,
+      controller: controller,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
+      filterQuality: filterQuality,
+      onWarning: onWarning,
     );
   }
 

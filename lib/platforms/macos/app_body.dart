@@ -62,14 +62,24 @@ class _MacAppBodyState extends State<MacAppBody> {
                     ),
                   ),
                   horizontalMargin8,
-                  const CircleAvatar(
-                    radius: 5.5,
-                    backgroundColor: Colors.yellow,
+                  InkWell(
+                    onDoubleTap: () {},
+                    child: const CircleAvatar(
+                      radius: 5.5,
+                      backgroundColor: Colors.yellow,
+                    ),
                   ),
                   horizontalMargin8,
-                  const CircleAvatar(
-                    radius: 5.5,
-                    backgroundColor: Colors.green,
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _showFullSize = true;
+                      });
+                    },
+                    child: const CircleAvatar(
+                      radius: 5.5,
+                      backgroundColor: Colors.green,
+                    ),
                   ),
                   const Spacer(),
                   Text(

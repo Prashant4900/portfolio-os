@@ -82,18 +82,44 @@ class MacStatusBarWidget extends StatelessWidget {
                 Provider.of<BatteryProvider>(context).batteryPercentageStream,
             initialData: '',
             builder: (context, snapshot) {
-              return Text(
-                snapshot.data ?? '',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Colors.white,
-                    ),
+              return Row(
+                children: [
+                  Text(
+                    snapshot.data ?? '',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                ],
               );
             },
           ),
           horizontalMargin4,
-          const Icon(
-            CupertinoIcons.battery_25,
-            color: Colors.white,
+          StreamBuilder<BatteryStatus>(
+            stream:
+                Provider.of<BatteryProvider>(context).batteryStatusController,
+            initialData: BatteryStatus.full,
+            builder: (context, snapshot) {
+              return snapshot.data == BatteryStatus.full
+                  ? const Icon(
+                      CupertinoIcons.battery_100,
+                      color: Colors.white,
+                      size: 20,
+                    )
+                  : snapshot.data == BatteryStatus.mid
+                      ? Assets.macos.svg.batteryMid.svg(
+                          height: 12,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
+                        )
+                      : const Icon(
+                          CupertinoIcons.battery_25,
+                          color: Colors.white,
+                          size: 20,
+                        );
+            },
           ),
           horizontalMargin12,
           const Icon(
@@ -112,7 +138,9 @@ class MacStatusBarWidget extends StatelessWidget {
             height: 20,
             colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
           ),
-          horizontalMargin16,
+          horizontalMargin12,
+          Assets.macos.lottie.siri.lottie(width: 20, animate: false),
+          horizontalMargin12,
           StreamBuilder(
             stream: Stream<void>.periodic(const Duration(seconds: 1)),
             builder: (context, snapshot) {

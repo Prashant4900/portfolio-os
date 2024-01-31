@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/common.dart';
 import 'package:portfolio/gen/assets.gen.dart';
+import 'package:portfolio/platforms/macos/apps/safari.dart';
 import 'package:portfolio/platforms/macos/apps/spotify.dart';
 import 'package:portfolio/platforms/macos/apps/vs_code.dart';
 import 'package:portfolio/utils/apps_provider.dart';
@@ -24,7 +25,12 @@ class MacDockWidget extends StatelessWidget {
           horizontalMargin12,
           Assets.svg.finder.svg(width: 45),
           horizontalMargin12,
-          Assets.svg.safari.svg(width: 40),
+          InkWell(
+            onTap: () {
+              context.read<AppsProvider>().open(const MySafariApp());
+            },
+            child: Assets.svg.safari.svg(width: 40),
+          ),
           horizontalMargin12,
           Assets.macos.images.message.image(width: 40),
           horizontalMargin12,
